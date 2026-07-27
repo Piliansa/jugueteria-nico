@@ -4,10 +4,14 @@ export type Product = {
   nombre: string;
   marca: string;
   categoria: string;
+  //subcategoria: string;
+  descripcion: string;
   edad: string;
   precio: number;
-  imagen: string;
+  //imagenes: string[];
   destacado: boolean;
+  enOferta?: boolean;
   stock: boolean;
   nuevo: boolean;
+  //activo: boolean;
 };

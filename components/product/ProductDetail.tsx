@@ -1,4 +1,8 @@
+import Image from "next/image";
 import type { Product } from "@/types/Product";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
+import Badge from "@/components/common/Badge";
+import Attribute from "@/components/common/Attribute";
 
 type ProductDetailProps = {
   product: Product;
@@ -8,29 +12,71 @@ export default function ProductDetail({ product }: ProductDetailProps) {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className="grid items-start gap-16 md:grid-cols-2">
           {/* Imagen */}
-          <div className="rounded-2xl border bg-white p-8">
-            <img
-              src={product.imagen}
+          <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition hover:shadow-lg">
+            <Image
+              src={`/products/${product.slug}/principal.jpeg`}
               alt={product.nombre}
-              className="mx-auto h-96 object-contain"
+              width={450}
+              height={450}
+              className="mx-auto h-80 w-auto object-contain"
             />
           </div>
 
           {/* Información */}
-          <div className="flex flex-col justify-center">
-            <p className="text-sm uppercase tracking-widest text-gray-500">
+          <div className="flex flex-col justify-start pt-4">
+            {/* Badges */}
+            <div className="mb-5 flex flex-wrap gap-2">
+              {product.nuevo && <Badge variant="new">Nuevo</Badge>}
+
+              {product.destacado && <Badge variant="featured">Destacado</Badge>}
+
+              {product.enOferta && <Badge variant="sale">Oferta</Badge>}
+            </div>
+
+            {/* Marca */}
+            <p className="text-sm uppercase tracking-[0.2em] text-gray-500">
               {product.marca}
             </p>
 
-            <h1 className="mt-2 text-5xl font-bold">{product.nombre}</h1>
+            {/* Nombre */}
+            <h1 className="mt-2 text-5xl font-bold text-gray-900">
+              {product.nombre}
+            </h1>
 
-            <p className="mt-4 text-lg text-gray-600">{product.categoria}</p>
-
-            <p className="mt-2 text-gray-600">
-              Edad recomendada: {product.edad}
+            {/* Precio */}
+            <p className="mt-6 text-4xl font-bold text-gray-900">
+              ${product.precio.toLocaleString("es-AR")}
             </p>
+
+            <p className="mt-1 text-sm text-gray-500">
+              Consultá disponibilidad por WhatsApp.
+            </p>
+
+            {/* Descripción */}
+            <p className="mt-8 leading-8 text-gray-600">
+              {product.descripcion}
+            </p>
+
+            {/* Características */}
+            <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200 pt-8">
+              <Attribute label="Marca" value={product.marca} />
+
+              <Attribute label="Categoría" value={product.categoria} />
+
+              <Attribute label="Edad" value={product.edad} />
+
+              <Attribute
+                label="Stock"
+                value={<span className="text-green-600">Disponible</span>}
+              />
+            </div>
+
+            {/* Botón */}
+            <div className="mt-10">
+              <WhatsAppButton productName={product.nombre} />
+            </div>
           </div>
         </div>
       </div>
