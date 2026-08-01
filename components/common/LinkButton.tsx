@@ -1,4 +1,4 @@
-type LinkButtonProps = {
+﻿type LinkButtonProps = {
   children: React.ReactNode;
 
   href: string;
@@ -54,3 +54,4 @@ export default function LinkButton({
     </a>
   );
 }
+

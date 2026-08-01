@@ -1,4 +1,4 @@
-type BadgeProps = {
+﻿type BadgeProps = {
   children: React.ReactNode;
   variant: "new" | "featured" | "sale";
 };
@@ -30,3 +30,4 @@ export default function Badge({ children, variant }: BadgeProps) {
     </span>
   );
 }
+

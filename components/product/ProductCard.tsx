@@ -1,4 +1,4 @@
-import type { Product } from "@/types/Product";
+﻿import type { Product } from "@/types/Product";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -40,10 +40,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           </p>
         )}
 
-        <button className="mt-4 w-full rounded-xl bg-green-500 py-3 font-semibold text-white transition hover:bg-green-600">
-          Consultar por WhatsApp
-        </button>
+        <p className="mt-4 font-semibold text-red-600">Ver producto</p>
       </div>
     </Link>
   );
 }
+

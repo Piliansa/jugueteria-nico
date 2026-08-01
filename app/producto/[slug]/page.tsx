@@ -1,4 +1,4 @@
-import ProductDetail from "@/components/product/ProductDetail";
+﻿import ProductDetail from "@/components/product/ProductDetail";
 import { products } from "@/data/products";
 
 type Props = {
@@ -22,3 +22,4 @@ export default async function ProductPage({ params }: Props) {
 
   return <ProductDetail product={producto} />;
 }
+

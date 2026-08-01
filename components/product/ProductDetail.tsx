@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import type { Product } from "@/types/Product";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 import Badge from "@/components/common/Badge";
@@ -24,7 +24,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             />
           </div>
 
-          {/* Información */}
+          {/* InformaciÃ³n */}
           <div className="flex flex-col justify-start pt-4">
             {/* Badges */}
             <div className="mb-5 flex flex-wrap gap-2">
@@ -46,24 +46,26 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </h1>
 
             {/* Precio */}
-            <p className="mt-6 text-4xl font-bold text-gray-900">
-              ${product.precio.toLocaleString("es-AR")}
-            </p>
+            {product.precio > 0 ? (
+              <p className="mt-6 text-4xl font-bold text-gray-900">
+                ${product.precio.toLocaleString("es-AR")}
+              </p>
+            ) : (
+              <p className="mt-6 text-3xl font-bold text-red-600">
+                Consultar precio
+              </p>
+            )}
 
-            <p className="mt-1 text-sm text-gray-500">
-              Consultá disponibilidad por WhatsApp.
-            </p>
-
-            {/* Descripción */}
+            {/* DescripciÃ³n */}
             <p className="mt-8 leading-8 text-gray-600">
               {product.descripcion}
             </p>
 
-            {/* Características */}
+            {/* CaracterÃ­sticas */}
             <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200 pt-8">
               <Attribute label="Marca" value={product.marca} />
 
-              <Attribute label="Categoría" value={product.categoria} />
+              <Attribute label="CategorÃ­a" value={product.categoria} />
 
               <Attribute label="Edad" value={product.edad} />
 
@@ -73,7 +75,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               />
             </div>
 
-            {/* Botón */}
+            {/* BotÃ³n */}
             <div className="mt-10">
               <WhatsAppButton productName={product.nombre} />
             </div>
@@ -83,3 +85,4 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     </section>
   );
 }
+

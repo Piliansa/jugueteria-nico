@@ -1,4 +1,4 @@
-type ProductAttributeProps = {
+﻿type ProductAttributeProps = {
   label: string;
   value: React.ReactNode;
 };
@@ -15,3 +15,4 @@ export default function ProductAttribute({
     </div>
   );
 }
+

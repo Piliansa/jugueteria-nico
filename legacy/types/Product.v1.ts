@@ -1,14 +1,13 @@
 export type Product = {
-  id: number;
+  id: string;
   slug: string;
   nombre: string;
   marca: string;
   categoria: string;
   descripcion: string;
-  edad: string;
   precio: number;
-  destacado: boolean;
-  enOferta?: boolean;
   stock: number;
+  destacado: boolean;
   nuevo: boolean;
+  enOferta: boolean;
 };

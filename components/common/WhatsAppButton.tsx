@@ -1,4 +1,4 @@
-import LinkButton from "@/components/common/LinkButton";
+﻿import LinkButton from "@/components/common/LinkButton";
 import { siteConfig } from "@/config/site";
 
 type WhatsAppButtonProps = {
@@ -18,3 +18,4 @@ export default function WhatsAppButton({ productName }: WhatsAppButtonProps) {
     </LinkButton>
   );
 }
+

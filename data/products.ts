@@ -1,4 +1,4 @@
-import type { Product } from "@/types/Product";
+﻿import type { Product } from "@/types/Product";
 
 export const products: Product[] = [
   {
@@ -7,12 +7,11 @@ export const products: Product[] = [
     nombre: "Monopoly",
     marca: "Hasbro",
     categoria: "Juegos de mesa",
-    descripcion: "Juego de mesa clásico para toda la familia.",
+    descripcion: "Juego de mesa clÃ¡sico para toda la familia.",
     edad: "8+",
     precio: 0,
-    imagenPrincipal: "/products/monopoly.jpeg",
     destacado: true,
-    stock: true,
+    stock: 1,
     nuevo: false,
   },
 
@@ -25,9 +24,8 @@ export const products: Product[] = [
     descripcion: "Juego de mesa para 2 a 4 jugadores.",
     edad: "8+",
     precio: 0,
-    imagenPrincipal: "/products/burako.jpeg",
     destacado: true,
-    stock: true,
+    stock: 1,
     nuevo: true,
   },
 
@@ -37,12 +35,11 @@ export const products: Product[] = [
     nombre: "Ajedrez",
     marca: "Plastigal",
     categoria: "Juegos de mesa",
-    descripcion: "Juego de mesa clásico para toda la familia.",
+    descripcion: "Juego de mesa clÃ¡sico para toda la familia.",
     edad: "4+",
     precio: 0,
-    imagenPrincipal: "/products/ajedrez.jpeg",
     destacado: true,
-    stock: true,
+    stock: 1,
     nuevo: false,
   },
 
@@ -55,10 +52,10 @@ export const products: Product[] = [
     descripcion: "Juego de mesa para 2 a 4 jugadores.",
     edad: "4+",
     precio: 0,
-    imagenPrincipal: "/products/pinguinos.jpeg",
     destacado: false,
     enOferta: false,
-    stock: true,
+    stock: 1,
     nuevo: false,
   },
 ];
+
