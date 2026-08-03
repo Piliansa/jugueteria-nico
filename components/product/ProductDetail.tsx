@@ -16,7 +16,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {/* Imagen */}
           <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition hover:shadow-lg">
             <Image
-              src={`/products/${product.slug}/principal.jpeg`}
+              src={product.imagen}
               alt={product.nombre}
               width={450}
               height={450}
@@ -85,4 +85,3 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     </section>
   );
 }
-

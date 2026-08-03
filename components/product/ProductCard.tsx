@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <div className="flex h-72 items-center justify-center overflow-hidden rounded-xl bg-gray-50">
         <Image
-          src={`/products/${product.slug}/principal.jpeg`}
+          src={product.imagen}
           alt={product.nombre}
           width={350}
           height={350}
@@ -45,4 +45,3 @@ export default function ProductCard({ product }: ProductCardProps) {
     </Link>
   );
 }
-

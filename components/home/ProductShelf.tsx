@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import type { Product } from "@/types/Product";
 import SectionHeader from "@/components/common/SectionHeader";
+import Image from "next/image";
 
 type ProductShelfProps = {
   eyebrow: string;
@@ -25,8 +26,14 @@ export default function ProductShelf({
               href={`/producto/${product.slug}`}
               className="rounded-2xl border border-zinc-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <div className="flex h-44 items-center justify-center rounded-xl bg-amber-50 text-5xl">
-                ðŸ§¸
+              <div className="flex h-44 items-center justify-center rounded-xl bg-amber-50">
+                <Image
+                  src={product.imagen}
+                  alt={product.nombre}
+                  width={300}
+                  height={220}
+                  className="max-h-40 w-auto object-contain"
+                />
               </div>
               <p className="mt-5 text-xs font-bold uppercase tracking-widest text-zinc-500">
                 {product.marca}
@@ -47,4 +54,3 @@ export default function ProductShelf({
     </section>
   );
 }
-
