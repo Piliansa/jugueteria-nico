@@ -4,7 +4,7 @@
     eyebrow: "Desde 1991",
     title: "¡La diversion empieza aca!",
     description:
-      "Juguetes, juegos, libreria y regalos para todas las edades en Concepcion del Uruguay.",
+      "Juguetes, juegos, libreria y regalos para todas las edades en Concepción del Uruguay, Entre Ríos.",
     ctaLabel: "Ver catalogo",
     ctaHref: "/catalogo",
     image: "/banners/local.png",
