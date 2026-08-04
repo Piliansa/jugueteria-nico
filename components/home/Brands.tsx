@@ -1,4 +1,4 @@
-﻿import { brands } from "@/data/brands";
+import { brands } from "@/data/brands";
 import SectionHeader from "@/components/common/SectionHeader";
 
 export default function Brands() {
@@ -6,7 +6,7 @@ export default function Brands() {
     <section className="mx-auto max-w-7xl px-5 py-16">
       <SectionHeader
         eyebrow="Primeras marcas"
-        title="Marcas que acompaÃ±an cada juego"
+        title="Marcas que acompañan cada juego"
       />
       <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
         {brands.map((brand) => (
@@ -21,4 +21,3 @@ export default function Brands() {
     </section>
   );
 }
-

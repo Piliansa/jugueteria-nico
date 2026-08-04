@@ -2,7 +2,7 @@
   {
     id: "local",
     eyebrow: "Desde 1991",
-    title: "La diversion empieza aca",
+    title: "¡La diversion empieza aca!",
     description:
       "Juguetes, juegos, libreria y regalos para todas las edades en Concepcion del Uruguay.",
     ctaLabel: "Ver catalogo",
@@ -22,7 +22,7 @@
   {
     id: "libreria",
     eyebrow: "Libreria comercial",
-    title: "Todo para estudiar y trabajar mejor",
+    title: "Todo para estudiar y trabajar",
     description:
       "Resmas, carpetas, biromes y esenciales para tu oficina o escuela.",
     ctaLabel: "Ver libreria",
@@ -30,4 +30,3 @@
     image: "/banners/libreria.png",
   },
 ];
-
