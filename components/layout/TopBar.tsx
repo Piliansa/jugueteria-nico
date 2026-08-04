@@ -1,15 +1,20 @@
-﻿import { siteConfig } from "@/config/site";
+﻿const PROMO_MESSAGE =
+  "Consultá por a Colón, Villa Elisa, Basavilbaso y toda la zona || Retirá en nuestras dos sucursales en Concepción del Uruguay";
 
 export default function TopBar() {
   return (
-    <div className="bg-zinc-950 text-sm text-white">
-      <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-2 sm:flex-row sm:items-center sm:justify-between">
-        <p>{siteConfig.city} - Dos sucursales</p>
-        <a className="font-semibold hover:text-amber-300" href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer">
-          Consultanos por WhatsApp
-        </a>
+    <div className="overflow-hidden bg-zinc-950 text-sm text-white">
+      <div
+        className="flex animate-marquee whitespace-nowrap py-2"
+        aria-hidden="true"
+      >
+        <span className="mx-4">{PROMO_MESSAGE}</span>
+        <span className="mx-4">{PROMO_MESSAGE}</span>
+        <span className="mx-4">{PROMO_MESSAGE}</span>
+        <span className="mx-4">{PROMO_MESSAGE}</span>
       </div>
+      {/* versión invisible para lectores de pantalla, se lee una sola vez */}
+      <span className="sr-only">{PROMO_MESSAGE}</span>
     </div>
   );
 }
-
