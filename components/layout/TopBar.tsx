@@ -1,5 +1,5 @@
 ﻿const PROMO_MESSAGE =
-  "Consultá por envíos a Colón, Villa Elisa, Basavilbaso y toda la zona || Retirá en nuestras dos sucursales en Concepción del Uruguay";
+  "Consultá por envíos a Colón, Villa Elisa, Basavilbaso y toda la zona || Retirá en cualquiera de nuestras dos sucursales en Concepción del Uruguay";
 
 export default function TopBar() {
   return (

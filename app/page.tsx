@@ -7,6 +7,7 @@ import CategoriesNav from "@/components/layout/CategoriesNav";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
+import GoogleReviews from "@/components/common/GoogleReviews";
 
 export default function Home() {
   return (
@@ -21,8 +22,8 @@ export default function Home() {
         <NewProducts />
         <Brands />
       </main>
+      <GoogleReviews />
       <Footer />
     </>
   );
 }
-
