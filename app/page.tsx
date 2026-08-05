@@ -8,6 +8,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import GoogleReviews from "@/components/common/GoogleReviews";
+import Reveal from "@/components/common/Reveal";
 
 export default function Home() {
   return (
@@ -17,10 +18,18 @@ export default function Home() {
       <CategoriesNav />
       <main>
         <HeroCarousel />
-        <CategoryGrid />
-        <FeaturedProducts />
-        <NewProducts />
-        <Brands />
+        <Reveal>
+          <CategoryGrid />
+        </Reveal>
+        <Reveal delay={100}>
+          <FeaturedProducts />
+        </Reveal>
+        <Reveal delay={100}>
+          <NewProducts />
+        </Reveal>
+        <Reveal delay={100}>
+          <Brands />
+        </Reveal>
       </main>
       <GoogleReviews />
       <Footer />
