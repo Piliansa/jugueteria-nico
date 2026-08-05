@@ -38,10 +38,12 @@ export default function ProductShelf({
               <p className="mt-5 text-xs font-bold uppercase tracking-widest text-zinc-500">
                 {product.marca}
               </p>
-              <h3 className="mt-1 text-lg font-black text-zinc-900">
+              <h3 className="mt-1 text-lg font-black text-zinc-900  dark:text-zinc-300">
                 {product.nombre}
               </h3>
-              <p className="mt-2 text-sm text-zinc-600">{product.categoria}</p>
+              <p className="mt-2 text-sm text-zinc-600  dark:text-zinc-300">
+                {product.categoria}
+              </p>
               <p className="mt-4 font-bold text-red-600">
                 {product.precio > 0
                   ? `$${product.precio.toLocaleString("es-AR")}`

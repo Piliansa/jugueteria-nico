@@ -18,7 +18,7 @@ export default function CategoryGrid() {
             className="rounded-2xl border border-zinc-200 bg-white p-4 text-center transition hover:-translate-y-0.5 hover:border-red-300 hover:shadow-md"
           >
             <span className="text-3xl">{category.emoji}</span>
-            <p className="mt-3 text-sm font-bold text-zinc-800">
+            <p className="mt-3 text-sm font-bold text-zinc-800  dark:text-zinc-300">
               {category.name}
             </p>
           </Link>
@@ -27,4 +27,3 @@ export default function CategoryGrid() {
     </section>
   );
 }
-

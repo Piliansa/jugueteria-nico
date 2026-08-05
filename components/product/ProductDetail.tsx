@@ -41,13 +41,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </p>
 
             {/* Nombre */}
-            <h1 className="mt-2 text-5xl font-bold text-gray-900">
+            <h1 className="mt-2 text-5xl font-bold text-gray-900  dark:text-zinc-300">
               {product.nombre}
             </h1>
 
             {/* Precio */}
             {product.precio > 0 ? (
-              <p className="mt-6 text-4xl font-bold text-gray-900">
+              <p className="mt-6 text-4xl font-bold text-gray-900  dark:text-zinc-100">
                 ${product.precio.toLocaleString("es-AR")}
               </p>
             ) : (
@@ -57,15 +57,15 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
 
             {/* DescripciÃ³n */}
-            <p className="mt-8 leading-8 text-gray-600">
+            <p className="mt-8 leading-8 text-gray-600  dark:text-zinc-300">
               {product.descripcion}
             </p>
 
             {/* CaracterÃ­sticas */}
-            <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200 pt-8">
+            <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200  dark:text-zinc-300 pt-8 ">
               <Attribute label="Marca" value={product.marca} />
 
-              <Attribute label="CategorÃ­a" value={product.categoria} />
+              <Attribute label="Categorí­a" value={product.categoria} />
 
               <Attribute label="Edad" value={product.edad} />
 

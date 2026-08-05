@@ -16,11 +16,12 @@ export default function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-2 text-3xl font-black tracking-tight text-zinc-950 sm:text-4xl">
+      <h2 className="mt-2 font-heading text-3xl font-black tracking-tight text-zinc-950 dark:text-white  sm:text-4xl">
         {title}
       </h2>
-      {description && <p className="mt-3 text-zinc-600">{description}</p>}
+      {description && (
+        <p className="mt-3 text-zinc-600  dark:text-zinc-300">{description}</p>
+      )}
     </div>
   );
 }
-

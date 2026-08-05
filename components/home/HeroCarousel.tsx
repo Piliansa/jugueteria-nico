@@ -33,7 +33,7 @@ export default function HeroCarousel() {
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
             {activeSlide.eyebrow}
           </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">
+          <h1 className="mt-3 font-heading text-4xl font-black tracking-tight sm:text-6xl">
             {activeSlide.title}
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-8 text-zinc-100">
@@ -60,4 +60,3 @@ export default function HeroCarousel() {
     </section>
   );
 }
-

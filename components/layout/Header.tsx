@@ -1,6 +1,7 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import ProductSearch from "@/components/layout/ProductSearch";
+import ThemeToggle from "@/components/common/ThemeToggle";
 
 export default function Header() {
   return (
@@ -24,6 +25,7 @@ export default function Header() {
         >
           Ver catálogo
         </Link>
+        <ThemeToggle />
       </div>
     </header>
   );
