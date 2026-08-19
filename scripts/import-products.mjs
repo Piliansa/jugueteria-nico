@@ -53,10 +53,20 @@ function limpiarNombre(nombreCrudo) {
 
 function readExcelRows() {
   const workbook = xlsx.readFile(EXCEL_PATH);
-  // el archivo tiene una fila de fecha/hora arriba antes del encabezado real,
-  // por eso arrancamos a leer desde la fila 2 (index 1)
   const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-  return xlsx.utils.sheet_to_json(firstSheet, { defval: "", range: 1 });
+
+  // primero leemos todo como filas "crudas" (arrays), para encontrar
+  // en qué número de fila están los encabezados reales
+  const filasCrudas = xlsx.utils.sheet_to_json(firstSheet, { header: 1 });
+  const indiceEncabezado = filasCrudas.findIndex((fila) =>
+    fila.some((celda) => celda?.toString().trim() === "Código"),
+  );
+
+  if (indiceEncabezado === -1) {
+    throw new Error('No encontré una fila con la columna "Código" en el Excel.');
+  }
+
+  return xlsx.utils.sheet_to_json(firstSheet, { defval: "", range: indiceEncabezado });
 }
 
 function mapRowToProduct(rowCrudo) {
