@@ -4,7 +4,9 @@ import CategoriesNav from "@/components/layout/CategoriesNav";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/products";
+
+export const revalidate = 300;
 
 type CatalogPageProps = {
   searchParams: Promise<{
@@ -24,6 +26,8 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
 
   const rawQuery = typeof params.q === "string" ? params.q.trim() : "";
   const query = normalizeText(rawQuery);
+
+  const products = await getProducts();
 
   const filteredProducts = products.filter((product) => {
     const searchableText = normalizeText(
