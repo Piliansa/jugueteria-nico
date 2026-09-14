@@ -10,6 +10,8 @@ import TopBar from "@/components/layout/TopBar";
 import GoogleReviews from "@/components/common/GoogleReviews";
 import Reveal from "@/components/common/Reveal";
 
+export const revalidate = 300;
+
 export default function Home() {
   return (
     <>
