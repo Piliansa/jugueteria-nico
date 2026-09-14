@@ -1,6 +1,8 @@
 ﻿import type { Metadata } from "next";
 import ProductDetail from "@/components/product/ProductDetail";
-import { products } from "@/data/products";
+import { getProductBySlug } from "@/lib/products";
+
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{
@@ -10,10 +12,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
-    return { title: "${product.cateroria} " };
+    return { title: "Producto no encontrado | Juguetería Nico" };
   }
 
   const title = `${product.nombre} | Juguetería Nico`;
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      images: [product.imagen], // así se ve la foto al compartir el link
+      images: [product.imagen],
     },
   };
 }
@@ -33,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
 
-  const producto = products.find((p) => p.slug === slug);
+  const producto = await getProductBySlug(slug);
 
   if (!producto) {
     return (
