@@ -19,6 +19,7 @@ type ProductRow = {
   nombre: string;
   marca: string;
   categoria: string;
+  categoria_tienda: string | null;
   descripcion: string;
   edad: string;
   precio: number;
@@ -65,8 +66,6 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
-  // sin filtro de stock a propósito: si alguien ya tenía el link guardado,
-  // mejor mostrarle la página con aviso de "sin stock" que un 404
   const { data, error } = await supabase
     .from("products")
     .select("*")
@@ -77,17 +76,21 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   return toProduct(data, 0);
 }
 
+// "categoriaSlug" es el slug del menú (ej: "vehiculos"), no el Rubro de Apollo
 export async function getProductsByCategory(
-  categoria: string,
+  categoriaSlug: string,
 ): Promise<Product[]> {
   const { data, error } = await supabase
     .from("products")
     .select("*")
-    .ilike("categoria", categoria)
+    .eq("categoria_tienda", categoriaSlug)
     .gt("stock", 0)
     .order("nombre");
 
-  if (error) return [];
+  if (error) {
+    console.error("Error trayendo productos por categoría:", error.message);
+    return [];
+  }
   return data.map(toProduct);
 }
 
@@ -103,6 +106,18 @@ export async function getFeaturedProducts(): Promise<Product[]> {
   return data.map(toProduct);
 }
 
+export async function getNewProducts(): Promise<Product[]> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("nuevo", true)
+    .gt("stock", 0)
+    .limit(8);
+
+  if (error) return [];
+  return data.map(toProduct);
+}
+
 export async function getProductVariants(
   grupoVariante: string,
 ): Promise<Product[]> {
@@ -111,18 +126,6 @@ export async function getProductVariants(
     .select("*")
     .eq("grupo_variante", grupoVariante)
     .order("precio");
-
-  if (error) return [];
-  return data.map(toProduct);
-}
-
-export async function getNewProducts(): Promise<Product[]> {
-  const { data, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("nuevo", true)
-    .gt("stock", 0)
-    .limit(8);
 
   if (error) return [];
   return data.map(toProduct);

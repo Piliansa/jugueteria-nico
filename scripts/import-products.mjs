@@ -292,6 +292,8 @@ async function main() {
   console.log(`  ${rows.length} filas encontradas.`);
 
   const products = rows.map(mapRowToProduct).filter(Boolean);
+  console.log("PRIMEROS PRODUCTOS:");
+  console.log(products.slice(0, 10));
   console.log(
     `  ${products.length} productos habilitados (ML = "S") para importar.`,
   );
