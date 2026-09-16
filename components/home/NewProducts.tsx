@@ -9,6 +9,7 @@ export default async function NewProducts() {
       eyebrow="Recien llegados"
       title="Novedades"
       products={products}
+      titleColorClassName="text-emerald-600 dark:text-emerald-400"
     />
   );
 }
