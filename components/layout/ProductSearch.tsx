@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { products } from "@/data/products";
+import { useEffect, useState } from "react";
+import { getProducts } from "@/lib/products";
+import type { Product } from "@/types/Product";
 
 function normalizeText(text: string) {
   return text
@@ -13,8 +14,14 @@ function normalizeText(text: string) {
 }
 
 export default function ProductSearch() {
+  const [products, setProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  // trae los productos UNA sola vez, apenas aparece el buscador en pantalla
+  useEffect(() => {
+    getProducts().then(setProducts);
+  }, []);
 
   const normalizedQuery = normalizeText(query.trim());
 
