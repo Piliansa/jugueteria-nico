@@ -7,6 +7,8 @@
 // código que confirmaste, no la sugerencia original).
 //
 // Así detectás errores de tipeo o matches equivocados ANTES de subir nada.
+// Habría que agregarle un botón para abrir la carpeta de imágenes desde el navegador, pero por ahora abrilo con el explorador de archivos y compará visualmente.
+// También un buscador. Porque son muchos productos.
 //
 // Cómo usarlo: node scripts/generar-preview.mjs
 
@@ -29,12 +31,17 @@ const supabase = createClient(
 );
 
 function escapeHtml(texto) {
-  return texto.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  return texto.replace(
+    /[&<>"]/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+  );
 }
 
 async function main() {
   if (!fs.existsSync(MAPEO_PATH)) {
-    console.log("No encontré revisar-imagenes.xlsx. Corré primero sugerir-mapeo.mjs.");
+    console.log(
+      "No encontré revisar-imagenes.xlsx. Corré primero sugerir-mapeo.mjs.",
+    );
     return;
   }
 
@@ -47,7 +54,9 @@ async function main() {
     return codigo && codigo.toUpperCase() !== "SKIP";
   });
 
-  console.log(`Buscando en Supabase los ${confirmadas.length} códigos confirmados...`);
+  console.log(
+    `Buscando en Supabase los ${confirmadas.length} códigos confirmados...`,
+  );
   const { data: products, error } = await supabase
     .from("products")
     .select("codigo, nombre");
@@ -57,7 +66,9 @@ async function main() {
     return;
   }
 
-  const nombrePorCodigo = new Map(products.map((p) => [p.codigo.trim(), p.nombre]));
+  const nombrePorCodigo = new Map(
+    products.map((p) => [p.codigo.trim(), p.nombre]),
+  );
 
   const tarjetas = confirmadas
     .map((fila) => {
@@ -103,7 +114,9 @@ async function main() {
 </html>`;
 
   fs.writeFileSync(OUTPUT_PATH, html, "utf-8");
-  console.log(`Listo. Abrí este archivo con doble click en tu explorador de archivos:`);
+  console.log(
+    `Listo. Abrí este archivo con doble click en tu explorador de archivos:`,
+  );
   console.log(OUTPUT_PATH);
 }
 
