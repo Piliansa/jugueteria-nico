@@ -2,6 +2,11 @@
 //
 // Capa de datos: reemplaza a data/products.ts. Trae los productos desde
 // Supabase en vez de un array fijo escrito en el código.
+//
+// Importante: este archivo NO lo usa ninguno de los scripts de la carpeta
+// scripts/ (ellos hablan directo con Supabase) — así que la limpieza del
+// nombre de acá abajo es solo para lo que se MUESTRA en la web, y no afecta
+// en absoluto al importador, al matching de imágenes ni a nada de eso.
 
 import { createClient } from "@supabase/supabase-js";
 import type { Product } from "@/types/Product";
@@ -31,13 +36,32 @@ type ProductRow = {
   grupo_variante: string | null;
 };
 
+// Apollo suele agregar el código propio del fabricante como última palabra
+// del nombre (ej: "Nerf Nanofire E0121", "9 Pistas 117"). Esta función lo
+// detecta (una palabra final con letras/números/guiones, con al menos un
+// número) y la saca, dejando el resto del nombre sin tocar.
+function limpiarNombreParaMostrar(nombre: string): string {
+  const palabras = nombre.trim().split(/\s+/);
+  if (palabras.length <= 1) return nombre;
+
+  const ultima = palabras[palabras.length - 1];
+  const pareceCodigoDeFabricante =
+    /^[A-Za-z0-9-]{2,12}$/.test(ultima) && /\d/.test(ultima);
+
+  if (pareceCodigoDeFabricante) {
+    return palabras.slice(0, -1).join(" ");
+  }
+
+  return nombre;
+}
+
 function toProduct(row: ProductRow, index: number): Product {
   return {
     id: index,
     codigo: row.codigo,
     slug: row.slug,
     imagen: row.imagen || "/products/placeholder.png",
-    nombre: row.nombre,
+    nombre: limpiarNombreParaMostrar(row.nombre),
     marca: row.marca,
     categoria: row.categoria,
     descripcion: row.descripcion,
@@ -113,7 +137,6 @@ export async function getNewProducts(): Promise<Product[]> {
     .eq("nuevo", true)
     .gt("stock", 0)
     .limit(8);
-
   if (error) return [];
   return data.map(toProduct);
 }
