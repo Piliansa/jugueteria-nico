@@ -3,6 +3,7 @@ import type { Product } from "@/types/Product";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { AddToCartButton } from "@/components/AddToCartButton";
 
 type ProductCardProps = {
   product: Product;
@@ -68,6 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="mt-4 font-semibold text-red-600 dark:text-red-400">
           Ver producto
         </p>
+        <AddToCartButton producto={product} />
       </div>
     </div>
   );
