@@ -7,7 +7,7 @@
 //   <AddToCartButton producto={{ codigo: p.codigo, nombre: p.nombre, precio: p.precio }} />
 
 import { useState } from "react";
-import { useCart } from "./CartContext";
+import { useCart } from "@/context/CartContext";
 
 export default function AddToCartButton({ producto }) {
   const { agregarProducto } = useCart();

@@ -3,7 +3,7 @@ import type { Product } from "@/types/Product";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { AddToCartButton } from "@/components/AddToCartButton";
+import  AddToCartButton  from "@/components/AddToCartButton";
 
 type ProductCardProps = {
   product: Product;

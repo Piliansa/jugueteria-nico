@@ -2,6 +2,7 @@
 import Link from "next/link";
 import ProductSearch from "@/components/layout/ProductSearch";
 import ThemeToggle from "@/components/common/ThemeToggle";
+import CartLink from "@/components/CartLink";
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
             priority
           />
         </Link>
-
+        <CartLink/>
         <ProductSearch />
 
         <Link
