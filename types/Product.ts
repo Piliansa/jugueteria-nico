@@ -13,4 +13,5 @@ export type Product = {
   enOferta?: boolean;
   stock: number;
   nuevo: boolean;
+  grupoVariante?: string | null;
 };

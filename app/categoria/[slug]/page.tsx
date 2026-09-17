@@ -6,20 +6,15 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import { categories } from "@/data/categories";
-import { products } from "@/data/products";
+import { getProductsByCategory } from "@/lib/products";
+
+export const revalidate = 300;
 
 type CategoryPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
-
-function normalizeText(text: string) {
-  return text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-}
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug } = await params;
@@ -30,10 +25,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const categoryProducts = products.filter(
-    (product) =>
-      normalizeText(product.categoria) === normalizeText(category.name),
-  );
+  const categoryProducts = await getProductsByCategory(slug);
 
   return (
     <>

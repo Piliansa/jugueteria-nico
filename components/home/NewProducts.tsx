@@ -1,13 +1,15 @@
-﻿import { products } from "@/data/products";
+﻿import { getNewProducts } from "@/lib/products";
 import ProductShelf from "@/components/home/ProductShelf";
 
-export default function NewProducts() {
+export default async function NewProducts() {
+  const products = await getNewProducts();
+
   return (
     <ProductShelf
       eyebrow="Recien llegados"
       title="Novedades"
-      products={products.filter((product) => product.nuevo)}
+      products={products}
+      titleColorClassName="text-emerald-600 dark:text-emerald-400"
     />
   );
 }
-

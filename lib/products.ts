@@ -1,4 +1,7 @@
-﻿// lib/products.ts
+// lib/products.ts
+//
+// Capa de datos: reemplaza a data/products.ts. Trae los productos desde
+// Supabase en vez de un array fijo escrito en el código.
 
 import { createClient } from "@supabase/supabase-js";
 import type { Product } from "@/types/Product";
@@ -8,7 +11,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 );
 
-const REVALIDATE_SECONDS = 300;
+const REVALIDATE_SECONDS = 300; // 5 minutos
 
 type ProductRow = {
   codigo: string;

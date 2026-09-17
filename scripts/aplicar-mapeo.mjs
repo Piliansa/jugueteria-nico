@@ -1,9 +1,8 @@
 // scripts/aplicar-mapeo.mjs
 //
-// Lee scripts/revisar-imagenes.xlsx (después de que vos completaste la
-// columna CodigoConfirmado) y sube cada imagen confirmada a Supabase Storage,
-// actualizando el producto correspondiente. Las filas sin CodigoConfirmado
-// (o con "SKIP") se ignoran.
+// Lee scripts/revisar-imagenes.xlsx (con la columna CodigoConfirmado ya
+// completada) y sube cada imagen confirmada a Supabase Storage, ya
+// estandarizada a 800x800 con fondo blanco.
 //
 // Cómo usarlo: node scripts/aplicar-mapeo.mjs
 
@@ -11,9 +10,9 @@ import { createClient } from "@supabase/supabase-js";
 import { config } from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
-import sharp from "sharp";
 import xlsx from "xlsx";
 import { fileURLToPath } from "node:url";
+import { estandarizarImagen } from "./procesar-imagen.mjs";
 
 config({ path: ".env.local" });
 
@@ -29,7 +28,9 @@ const supabase = createClient(
 
 async function main() {
   if (!fs.existsSync(MAPEO_PATH)) {
-    console.log("No encontré revisar-imagenes.xlsx. Corré primero sugerir-mapeo.mjs.");
+    console.log(
+      "No encontré revisar-imagenes.xlsx. Corré primero sugerir-mapeo.mjs.",
+    );
     return;
   }
 
@@ -57,15 +58,20 @@ async function main() {
 
     try {
       const buffer = fs.readFileSync(rutaLocal);
-      const jpgBuffer = await sharp(buffer).jpeg({ quality: 82 }).toBuffer();
+      const jpgBuffer = await estandarizarImagen(buffer);
       const rutaEnStorage = `${codigo}.jpg`;
 
       const { error: uploadError } = await supabase.storage
         .from(BUCKET)
-        .upload(rutaEnStorage, jpgBuffer, { contentType: "image/jpeg", upsert: true });
+        .upload(rutaEnStorage, jpgBuffer, {
+          contentType: "image/jpeg",
+          upsert: true,
+        });
       if (uploadError) throw uploadError;
 
-      const { data: publicUrlData } = supabase.storage.from(BUCKET).getPublicUrl(rutaEnStorage);
+      const { data: publicUrlData } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(rutaEnStorage);
 
       const { error: updateError } = await supabase
         .from("products")
@@ -80,7 +86,9 @@ async function main() {
     }
   }
 
-  console.log(`\n${subidas} imágenes subidas. ${saltadas} filas sin confirmar (se ignoraron).`);
+  console.log(
+    `\n${subidas} imágenes subidas. ${saltadas} filas sin confirmar (se ignoraron).`,
+  );
 }
 
 main();

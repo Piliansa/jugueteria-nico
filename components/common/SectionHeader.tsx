@@ -2,12 +2,14 @@
   eyebrow?: string;
   title: string;
   description?: string;
+  titleColorClassName?: string; // ej: "text-emerald-600 dark:text-emerald-400"
 };
 
 export default function SectionHeader({
   eyebrow,
   title,
   description,
+  titleColorClassName = "text-zinc-950 dark:text-white",
 }: SectionHeaderProps) {
   return (
     <div className="max-w-2xl">
@@ -16,12 +18,12 @@ export default function SectionHeader({
           {eyebrow}
         </p>
       )}
-      <h2 className="mt-2 font-heading text-3xl font-black tracking-tight text-zinc-950 dark:text-white  sm:text-4xl">
+      <h2
+        className={`mt-2 font-heading text-3xl font-black tracking-tight sm:text-4xl ${titleColorClassName}`}
+      >
         {title}
       </h2>
-      {description && (
-        <p className="mt-3 text-zinc-600  dark:text-zinc-300">{description}</p>
-      )}
+      {description && <p className="mt-3 text-zinc-600">{description}</p>}
     </div>
   );
 }
