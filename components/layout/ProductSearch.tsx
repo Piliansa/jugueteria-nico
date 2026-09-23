@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getProducts } from "@/lib/products";
 import type { Product } from "@/types/Product";
 
@@ -17,10 +17,26 @@ export default function ProductSearch() {
   const [products, setProducts] = useState<Product[]>([]);
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const contenedorRef = useRef<HTMLFormElement>(null);
 
-  // trae los productos UNA sola vez, apenas aparece el buscador en pantalla
   useEffect(() => {
     getProducts().then(setProducts);
+  }, []);
+
+  // cierra el desplegable si el clic fue afuera del buscador entero
+  // (input + lista de sugerencias) — sin depender de ningún cronómetro,
+  // así no hay carrera con el clic sobre una sugerencia
+  useEffect(() => {
+    function manejarClicAfuera(event: MouseEvent) {
+      if (
+        contenedorRef.current &&
+        !contenedorRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", manejarClicAfuera);
+    return () => document.removeEventListener("mousedown", manejarClicAfuera);
   }, []);
 
   const normalizedQuery = normalizeText(query.trim());
@@ -38,7 +54,12 @@ export default function ProductSearch() {
   const showSuggestions = isOpen && normalizedQuery.length > 0;
 
   return (
-    <form action="/catalogo" className="relative flex flex-1" role="search">
+    <form
+      ref={contenedorRef}
+      action="/catalogo"
+      className="relative flex flex-1"
+      role="search"
+    >
       <label className="sr-only" htmlFor="search">
         Buscar productos
       </label>
@@ -49,7 +70,6 @@ export default function ProductSearch() {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         onFocus={() => setIsOpen(true)}
-        onBlur={() => window.setTimeout(() => setIsOpen(false), 150)}
         placeholder="Buscá juguetes, marcas o librería..."
         autoComplete="off"
         className="h-11 min-w-0 flex-1 rounded-l-xl border border-zinc-300 px-4 outline-none ring-red-500 focus:ring-2"

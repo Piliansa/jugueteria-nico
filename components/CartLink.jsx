@@ -12,14 +12,12 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 
 export default function CartLink() {
-  const { cantidadTotal } = useCart();
+  const { itemCount } = useCart();
 
   return (
     <Link href="/carrito" className="carrito-link">
       🛒
-      {cantidadTotal > 0 && (
-        <span className="carrito-badge">{cantidadTotal}</span>
-      )}
+      {itemCount > 0 && <span className="carrito-badge">{itemCount}</span>}
     </Link>
   );
 }
