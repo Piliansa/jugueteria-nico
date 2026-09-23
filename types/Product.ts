@@ -6,6 +6,7 @@ export type Product = {
   nombre: string;
   marca: string;
   categoria: string;
+  categoriaTienda?: string | null; // slug de la categoría de menú (ej: "vehiculos")
   descripcion: string;
   edad: string;
   precio: number;

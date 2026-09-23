@@ -72,6 +72,7 @@ function toProduct(row: ProductRow, index: number): Product {
     stock: row.stock,
     nuevo: row.nuevo,
     grupoVariante: row.grupo_variante,
+    categoriaTienda: row.categoria_tienda,
   };
 }
 

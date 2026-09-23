@@ -3,15 +3,36 @@ import type { Product } from "@/types/Product";
 import WhatsAppButton from "@/components/common/WhatsAppButton";
 import Badge from "@/components/common/Badge";
 import Attribute from "@/components/common/Attribute";
+import Breadcrumb from "@/components/common/Breadcrumb";
+import { categories } from "@/data/categories";
 
 type ProductDetailProps = {
   product: Product;
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
+  const categoria = categories.find(
+    (item) => item.slug === product.categoriaTienda,
+  );
+
   return (
     <section className="py-16">
       <div className="mx-auto max-w-6xl px-6">
+        <Breadcrumb
+          items={[
+            { label: "Inicio", href: "/" },
+            ...(categoria
+              ? [
+                  {
+                    label: categoria.name,
+                    href: `/categoria/${categoria.slug}`,
+                  },
+                ]
+              : [{ label: "Catálogo", href: "/catalogo" }]),
+            { label: product.nombre },
+          ]}
+        />
+
         <div className="grid items-start gap-16 md:grid-cols-2">
           {/* Imagen */}
           <div className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition hover:shadow-lg">
@@ -24,7 +45,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             />
           </div>
 
-          {/* InformaciÃ³n */}
+          {/* Información */}
           <div className="flex flex-col justify-start pt-4">
             {/* Badges */}
             <div className="mb-5 flex flex-wrap gap-2">
@@ -56,16 +77,16 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               </p>
             )}
 
-            {/* DescripciÃ³n */}
+            {/* Descripción */}
             <p className="mt-8 leading-8 text-gray-600  dark:text-zinc-300">
               {product.descripcion}
             </p>
 
-            {/* CaracterÃ­sticas */}
+            {/* Características */}
             <div className="mt-10 grid grid-cols-2 gap-y-6 border-t border-gray-200  dark:text-zinc-300 pt-8 ">
               <Attribute label="Marca" value={product.marca} />
 
-              <Attribute label="Categorí­a" value={product.categoria} />
+              <Attribute label="Categoría" value={product.categoria} />
 
               <Attribute label="Edad" value={product.edad} />
 
@@ -75,7 +96,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               />
             </div>
 
-            {/* BotÃ³n */}
+            {/* Botón */}
             <div className="mt-10">
               <WhatsAppButton productName={product.nombre} />
             </div>
