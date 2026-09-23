@@ -76,12 +76,12 @@ export default async function ProductPage({ params }: Props) {
       <Header />
       <CategoriesNav />
 
-      <main className="flex-1 bg-zinc-50">
+      <main className="flex-1 bg-zinc-50 dark:bg-zinc-900">
         <ProductDetail product={producto} />
 
         {relacionados.length > 0 && (
           <section className="mx-auto max-w-6xl px-6 pb-16">
-            <h2 className="text-2xl font-black text-zinc-900">
+            <h2 className="text-2xl font-black text-zinc-900 dark:text-white">
               También te puede interesar
             </h2>
 
