@@ -6,16 +6,15 @@ import {
 } from "../precios";
 
 describe("calcularPrecioLista", () => {
-  it("calcula el precio de lista a partir del precio de contado (12% off)", () => {
-    // Arrange: si el precio de lista fuera $10.000 y el descuento es 12%,
-    // el precio de contado sería $8.800.
-    const precioContado = 8800;
+  it("calcula el precio de lista aplicando el 15% de recargo (caso real: 9 Pistas)", () => {
+    // Arrange: caso real tomado de Apollo — contado $19.500, lista $22.425
+    const precioContado = 19500;
 
     // Act
     const precioLista = calcularPrecioLista(precioContado);
 
     // Assert
-    expect(precioLista).toBeCloseTo(10000, 0);
+    expect(precioLista).toBeCloseTo(22425, 0);
   });
 
   it("con precio 0 devuelve 0 (no rompe con productos sin precio cargado)", () => {
