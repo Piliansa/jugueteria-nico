@@ -15,4 +15,6 @@ export type Product = {
   stock: number;
   nuevo: boolean;
   grupoVariante?: string | null;
+  precioLista?: number;
+  cuota3?: number;
 };

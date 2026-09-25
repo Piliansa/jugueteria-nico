@@ -3,7 +3,7 @@ import type { Product } from "@/types/Product";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import  AddToCartButton  from "@/components/AddToCartButton";
+import AddToCartButton from "@/components/AddToCartButton";
 
 type ProductCardProps = {
   product: Product;
@@ -57,9 +57,21 @@ export default function ProductCard({ product }: ProductCardProps) {
         </p>
 
         {product.precio > 0 ? (
-          <p className="pt-2 text-2xl font-bold text-red-600 dark:text-red-400">
-            ${product.precio.toLocaleString("es-AR")}
-          </p>
+          <div className="pt-2">
+            <p className="text-2xl font-bold text-red-600 dark:text-red-400">
+              ${product.precio.toLocaleString("es-AR")}
+            </p>
+            <p className="text-xs text-gray-500 dark:text-zinc-400">
+              Precio de lista $
+              {product.precioLista?.toLocaleString("es-AR", {
+                maximumFractionDigits: 0,
+              })}
+              {" · "}3 cuotas sin interés de $
+              {product.cuota3?.toLocaleString("es-AR", {
+                maximumFractionDigits: 0,
+              })}
+            </p>
+          </div>
         ) : (
           <p className="pt-3 text-3xl font-bold text-red-600 dark:text-red-400">
             Consultar precio

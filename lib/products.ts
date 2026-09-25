@@ -10,6 +10,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import type { Product } from "@/types/Product";
+import { calcularPrecioLista, calcularCuotaSinInteres } from "@/lib/precios";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -56,6 +57,7 @@ function limpiarNombreParaMostrar(nombre: string): string {
 }
 
 function toProduct(row: ProductRow, index: number): Product {
+  const precioLista = calcularPrecioLista(row.precio);
   return {
     id: index,
     codigo: row.codigo,
@@ -66,13 +68,15 @@ function toProduct(row: ProductRow, index: number): Product {
     categoria: row.categoria,
     descripcion: row.descripcion,
     edad: row.edad || "Consultar",
-    precio: row.precio,
     destacado: row.destacado,
     enOferta: row.en_oferta,
     stock: row.stock,
     nuevo: row.nuevo,
     grupoVariante: row.grupo_variante,
     categoriaTienda: row.categoria_tienda,
+    precio: row.precio,
+    precioLista,
+    cuota3: calcularCuotaSinInteres(precioLista),
   };
 }
 

@@ -68,9 +68,26 @@ export default function ProductDetail({ product }: ProductDetailProps) {
 
             {/* Precio */}
             {product.precio > 0 ? (
-              <p className="mt-6 text-4xl font-bold text-gray-900  dark:text-zinc-500">
-                ${product.precio.toLocaleString("es-AR")}
-              </p>
+              <div className="mt-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <p className="text-4xl font-bold text-gray-900 dark:text-zinc-500">
+                    ${product.precio.toLocaleString("es-AR")}
+                  </p>
+                  <span className="rounded-md bg-green-600 px-2 py-1 text-sm font-bold text-white">
+                    12% OFF pagando en efectivo
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">
+                  Precio de lista $
+                  {product.precioLista?.toLocaleString("es-AR", {
+                    maximumFractionDigits: 0,
+                  })}
+                  {" · "}3 cuotas sin interés de $
+                  {product.cuota3?.toLocaleString("es-AR", {
+                    maximumFractionDigits: 0,
+                  })}
+                </p>
+              </div>
             ) : (
               <p className="mt-6 text-3xl font-bold text-red-600">
                 Consultar precio
