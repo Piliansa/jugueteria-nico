@@ -67,7 +67,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </h1>
 
             {/* Precio */}
-            {product.precio > 0 ? (
+            {/* {product.precio > 0 ? (
               <div className="mt-6">
                 <div className="flex flex-wrap items-center gap-3">
                   <p className="text-4xl font-bold text-gray-900 dark:text-zinc-500">
@@ -92,7 +92,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <p className="mt-6 text-3xl font-bold text-red-600">
                 Consultar precio
               </p>
-            )}
+            )} */}
 
             {/* Descripción */}
             <p className="mt-8 leading-8 text-gray-600  dark:text-zinc-500">

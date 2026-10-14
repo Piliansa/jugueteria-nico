@@ -56,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           Edad: {product.edad}
         </p>
 
-        {product.precio > 0 ? (
+        {/* {product.precio > 0 ? (
           <div className="pt-2">
             <p className="text-2xl font-bold text-red-600 dark:text-red-400">
               ${product.precio.toLocaleString("es-AR")}
@@ -76,7 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="pt-3 text-3xl font-bold text-red-600 dark:text-red-400">
             Consultar precio
           </p>
-        )}
+        )} */}
 
         <p className="mt-4 font-semibold text-red-600 dark:text-red-400">
           Ver producto
